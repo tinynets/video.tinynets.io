@@ -1,7 +1,11 @@
+import CaptureVideo from './components/CaptureVideo/CaptureVideo'
+
+
+
 const App = () => {
     return (
       <div>
-        Hello
+        <CaptureVideo />
       </div>
     )
   }
