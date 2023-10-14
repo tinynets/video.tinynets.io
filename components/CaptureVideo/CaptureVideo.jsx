@@ -1,7 +1,9 @@
 import './CaptureVideo.css'
 import createOrUpgradeDB from '../../utils/db_ops'
 import { useEffect, useRef, useState } from 'react'
-import populateTable from '../../tbl_component'
+import { useDispatch } from 'react-redux'
+import { addTrainingData } from '../../trainingDataSlice';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const CaptureVideo = () => {
@@ -10,6 +12,9 @@ const CaptureVideo = () => {
     const [db, setDb] = useState(null)
     const [mediaRecorder, setMediaRecorder] = useState(null)
     const [chunks, setChunks] = useState([])
+    const [currentClipData, setCurrentClipData] = useState({})
+
+    const trainingDispatch = useDispatch()
 
     useEffect(() => {
         const init = async () => {
@@ -25,10 +30,14 @@ const CaptureVideo = () => {
             }
         }
         init()
-
     }, [])
 
 const startRecording = async () => {
+    setCurrentClipData({
+        "clip_id" : uuidv4(),
+        "label" : "test",
+        "start_time" : Date.now(),
+    })
     if (mediaRecorder) {
         mediaRecorder.ondataavailable = e => setChunks(chunks => [...chunks, e.data])
         mediaRecorder.onerror = e => console.log(e)
@@ -50,8 +59,8 @@ const stopRecording = async () => {
         const request = objectStore.add(blob)
     
         request.onsuccess = e => {
-          console.log('data added to training set');
-          populateTable(db);  // Refresh table after adding new blob
+          trainingDispatch(addTrainingData(currentClipData))
+          
         };
         
         request.onerror = e => console.log("error in transaction", e)
