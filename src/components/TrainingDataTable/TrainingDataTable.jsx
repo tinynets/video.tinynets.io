@@ -10,12 +10,14 @@ const TrainingDataTable = () => {
         <div>
             Data Table
                 {trainingData.trainingData.map((data, index) => (
-                    <table>
-                        <tr key={index}>
-                            <td>{data.clip_id}</td>
-                            <td>{data.label}</td>
-                            <td>{data.start_time}</td>
-                        </tr>
+                    <table key={index}>
+                        <tbody>
+                            <tr>
+                                <td>{data.clip_id}</td>
+                                <td>{data.label}</td>
+                                <td>{data.start_time}</td>
+                            </tr>
+                        </tbody>
                     </table>
                     
                 ))}

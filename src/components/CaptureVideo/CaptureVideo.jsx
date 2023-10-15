@@ -1,5 +1,5 @@
 import './CaptureVideo.css'
-import createOrUpgradeDB from '../../utils/db_ops'
+import createOrUpgradeDB from '../../../utils/db_ops'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTrainingData } from '../../trainingDataSlice';
