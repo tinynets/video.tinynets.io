@@ -7,7 +7,7 @@ const TrainingDataTable = () => {
     console.log(trainingData)
 
     return (
-        <div>
+        <div className='h-full flex-grow border-2w-1/5'>
             Data Table
                 {trainingData.trainingData.map((data, index) => (
                     <table key={index}>

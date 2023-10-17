@@ -71,11 +71,16 @@ const stopRecording = async () => {
     }
 
     return (
-        <div>
-            <center><h1>tinynets.io</h1></center>
+        <div className="h-full flex-grow w-4/5 border border-black border-solid lg:px-60">
+            <p className="text-3xl"> Vid Capture</p>
+            
             <video ref={videoRef} id="video_element" height={640} width={480} autoPlay></video>
-            <button id="start_recording" onClick={startRecording}>Start Recording</button>
-            <button id="stop_recording" onClick={stopRecording}>Stop Recording</button>
+            <button id="start_recording" type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" onClick={startRecording}>Start Recording</button>
+
+            <button id="stop_recording" type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" onClick={stopRecording}>Stop Recording</button>
+
+            <input type='text' placeholder='video label'/>
+
         </div>
     )
 }
