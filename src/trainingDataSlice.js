@@ -1,18 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const trainingDataSlice = createSlice({
-    name : 'trainingData',
+    name : 'recording',
     initialState: {
-        trainingData: []
+        trainingData: [],
+        selectedVideo: null,
+        isRecording: false
     },
     reducers: {
+        stopRecording: (state, action) => {
+            state.isRecording = false;
+        },
+        startRecording : (state) => {
+            state.isRecording = true;
+        },
         addTrainingData: (state, action) => {
             state.trainingData.push(action.payload);
-        }
+        },
     }
 })
 
-export const { addTrainingData } = trainingDataSlice.actions;
 
 
 export default trainingDataSlice.reducer;
+
+export const { stopRecording, startRecording, addTrainingData } = trainingDataSlice.actions;
